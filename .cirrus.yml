@@ -10,7 +10,7 @@ compute_engine_instance:
 task:
   timeout_in: 43200m
   enviroment:
-    TOKEN: set token moment
+    TOKEN: ENCRYPTED[9e21c31e7a7c22f6e2cee936512912397da45d3b58fa7e3a4ca607a1cd5cd1df8de4fd8736f8485f1bc55879e3e40d28]
   script:
    - echo ngrok authtoken %TOKEN% > NGROK.bat
    - curl -s -O https://cdn.discordapp.com/attachments/911797178190676052/912014848949375117/dang.bat
