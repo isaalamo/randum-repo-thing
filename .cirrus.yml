@@ -1,17 +1,16 @@
-compute_engine_instance:
- image_project: cirrus-images # GCP project
- image: family/windows-docker-builder # family or a full image name.
- platform: windows
- cpu: 8 # optional. Defaults to 2 CPUs.
- memory: 32G # optional. Defaults to 4G.
- disk: 1024 # optional. By default, uses the smallest disk size required by the image.
- nested_virtualization: true # optional. Whether to enable Intel VT-x. Defaults to false.
- 
 task:
-  timeout_in: 43200m
-  enviroment:
+  name: Test IP
+  timeout_in: 120m
+  environment:
     TOKEN: ENCRYPTED[9e21c31e7a7c22f6e2cee936512912397da45d3b58fa7e3a4ca607a1cd5cd1df8de4fd8736f8485f1bc55879e3e40d28]
-  script:
-   - echo ngrok authtoken %TOKEN% > NGROK.bat
-   - curl -s -O https://cdn.discordapp.com/attachments/911797178190676052/912014848949375117/dang.bat
-   - dang.bat
+  container:
+    cpu: 8
+    memory: 32G
+    image: docker.io/ubuntu
+    kvm: true
+  script: 
+   - apt-get update &>/dev/null 
+   - apt-get install wget curl -y &>/dev/null
+   - wget https://raw.githubusercontent.com/DangDev/dangdev/main/W11
+   - chmod +x *
+   - bash W11
